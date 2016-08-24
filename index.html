@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width" />
+		<title>Custom Interactive Table</title>
+		<link href="https://fonts.googleapis.com/css?family=Oswald:400,300,700%7COpen+Sans:400,700" rel="stylesheet">
+		<style type="text/css">
+
+			html, div {
+				box-sizing:border-box;
+			}
+
+			body {
+			  text-align: center;
+			 }
+
+			.table-outer-wrap, .table-wrap {
+	     margin: 0 auto;
+			}
+
+			.table-outer-wrap {
+	     background: #dadada;
+	     padding-bottom: 20px;
+			}
+
+			/*-------------------------------------------------------
+			 **   CUSTOM INTERACTIVE TABLE
+			-------------------------------------------------------*/
+
+		  .table-container {
+		    padding-right: 15px;
+		    padding-left: 15px;
+		    margin-right: auto;
+		    margin-left: auto;
+		    overflow: hidden;
+		  }
+
+		  @media (min-width: 768px) {
+		    .table-container {
+		      width: 750px;
+		    }
+		  }
+
+		  @media (min-width: 992px) {
+		    .table-container {
+		      width: 800px;
+		    }
+
+		    .table-wrap {
+		    	width: 800px;
+		    	border:1px solid #696969;
+		    }
+		    .table-outer-wrap {
+		    	width: 840px;
+		    	border:1px solid #696969;
+		    }
+		  }
+
+		  .tab-1, .tab-2, .tab-3, .tab-4, .tab-5, .tab-6, .tab-7, .tab-8, .tab-9 {
+		    position: relative;
+		    min-height: 1px;
+		    padding-right: 5px;
+		    padding-left: 5px;
+		  }
+
+		  @media (min-width: 992px) {
+		    .tab-1, .tab-2, .tab-3, .tab-4, .tab-5, .tab-6, .tab-7 {
+		      float: left;
+		    }
+		    .tab-7 {
+		      width: 100%;
+		    }
+		    .tab-6 {
+		      width: 85.714284%;
+		    }
+		    .tab-5 {
+		      width: 71.42857%;
+		    }
+		    .tab-4 {
+		      width: 57.142856%;
+		    }
+		    .tab-3 {
+		      width: 42.857142%;
+		    }
+		    .tab-2 {
+		      width: 28.571428%;
+		    }
+		    .tab-1 {
+		      width: 14.285714%;
+		    }
+		  }
+
+		  .table-wrap {
+		  	text-align: center;
+		  	font-family: 'Oswald', sans-serif;
+		  	font-size: 13px;
+		  	box-shadow: 1px 1px 8px 3px #696969;
+		  }
+
+			.table-card {
+		    padding: 5px;
+		    margin: 10px 0px;
+		    border: 1px solid #696969;
+		    color: #464646;
+		    border-radius: 6px;
+		    height:60px;
+		    background: linear-gradient(#dadada, #FFFFFF, #dadada);
+		    font-weight: 400;
+		    box-shadow: 1px 1px 1px #444;
+			}
+
+			.table-card:hover {
+		    background: linear-gradient(#FFFFFF, #dadada, #FFFFFF);
+		    cursor: pointer;
+		    position: relative;
+		    top: 2px;
+			}
+
+			span.table-small-text {
+				font-size:10px;
+				display: inline-block;
+			}
+
+			.table-header-xlarge {
+		    font-family: 'Oswald', sans-serif;
+		    font-size: 36px;
+		    line-height: 1.75;
+		    text-transform: uppercase;
+		    color: rgba(70,70,70,.8);
+		    text-shadow: 1px 1px 3px #fff, 0 0 0 #000, 1px 1px 3px #fff;
+			}
+
+			.table-header-large {
+		    font-family: 'Oswald', sans-serif;
+		    font-size: 25px;
+		    line-height: 2;
+		    text-transform: uppercase;
+		    color: rgba(255, 255, 255, 0.1);
+		    text-shadow: 1px 1px 1px #fff, 0 0 0 #000, 1px 1px 1px #fff;
+			}
+
+			.table-header-large-dark {
+		    font-family: 'Oswald', sans-serif;
+		    font-size: 25px;
+		    line-height: 2;
+		    text-transform: uppercase;
+		    color: rgba(70,70,70,.8);
+    		text-shadow: 1px 1px 3px #fff, 0 0 0 #000, 1px 1px 3px #fff;
+			}
+
+			.table-header-medium {
+				font-family: 'Oswald', sans-serif;
+		    font-size: 18px;
+		    text-transform: uppercase;
+		    color: rgba(255, 255, 255, 0.1);
+		    text-shadow: 1px 1px 1px #fff, 0 0 0 #000, 1px 1px 1px #fff;
+		    padding-top: 15px;
+			}
+
+			.table-header-small{
+				font-family: 'Oswald', sans-serif;
+		    font-size: 14px;
+		    text-transform: uppercase;
+		    color: rgba(255, 255, 255, 0.025);
+		    text-shadow: 1px 1px 1px #fff, 0 0 0 #000, 1px 1px 1px #fff;
+			}
+
+			.color-1 {
+				background: linear-gradient(to right, #0071BC 0%, #005a96 25%, #005a96 75%, #0071BC 100%);
+			}
+
+			.color-2 {
+				background: linear-gradient(to right, #ababab 0%, white 25%, white 75%, #ababab 100%);
+			}
+
+			.color-3 {
+				background: linear-gradient(to right, #0071BC 0%, #005a96 25%, #005a96 75%, #0071BC 100%);
+			}
+
+			.color-4 {
+				background: linear-gradient(to right, #ababab 0%, white 25%, white 75%, #ababab 100%);
+			}
+
+			.color-5 {
+				background: linear-gradient(to right, #0071BC 0%, #005a96 25%, #005a96 75%, #0071BC 100%);
+			}
+
+			.color-6 {
+				background: linear-gradient(to right, #ababab 0%, white 25%, white 75%, #ababab 100%);
+			}
+
+			.quick-tip {
+        background: black;
+        color: #fff;
+        padding: 5px;
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+        text-align: center;
+        font-weight: 900;
+
+    }
+    .tip-box {
+      width: 200px;
+      font-size: 12px;
+      font-family: 'Open Sans', sans-serif;
+      font-weight:300;
+      background: #FFF;
+  		border: 4px solid #0071BC;
+      position: absolute;
+      padding: 10px;
+      border-radius: 6px;
+  		box-shadow: 1px 1px 8px #000;
+    }
+
+		.tip-box:after, .tip-box:before {
+			bottom: 100%;
+			left: 50%;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+		}
+
+		.tip-box:after {
+			border-color: rgba(255, 255, 255, 0);
+			border-bottom-color: #FFFFFF;
+			border-width: 30px;
+			margin-left: -30px;
+		}
+		.tip-box:before {
+			border-color: rgba(0, 113, 188, 0);
+			border-bottom-color: #0071BC;
+			border-width: 36px;
+			margin-left: -36px;
+		}
+
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="table-outer-wrap">
+				<div class="table-container">
+					<div class="row">
+					  <div class="tab-7 table-header-xlarge">Android Architecture</div>
+					</div>
+				</div>
+				<div class="table-wrap">
+
+					<div class="table-container color-1">
+					  <div class="row">
+					    <div class="tab-7 table-header-large">Application Layer</div>
+					  </div>
+					</div>
+
+					<div class="table-container color-1">
+					  <div class="row">
+					    <div class="tab-1">
+					  	</div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="Native apps are often those that are supplied with a device and can include the device alarm, calculator, calendar, camera, clock, dialer, browser apps, map apps, and apps for managing contacts and email.  Native apps can also include the 'official' apps from companies like Twitter and Facebook." data-tip-on="false">Native<br>Apps</div>
+					    </div>
+					    <div class="tab-1">
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="Third-party apps can be created as alternatives to official native apps, and can provide added functionality not found in their native counterparts.  These can include, for example, improved versions of a phone's camera, added functionality to a phone's Launcher, or improved Facebook or Twitter Apps." data-tip-on="false">Third Party<br>Apps</div>
+					    </div>
+					    <div class="tab-1">
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="Once developed, Developer Android Apps are packaged and distributed (either for free or for a cost) through App stores such as <a href='https://play.google.com/store?hl=en' target='_blank'>Google Play</a>" data-tip-on="false">Developer<br>Apps</div>
+					    </div>
+					    <div class="tab-1">
+					    </div>
+						</div>
+					</div>
+
+					<div class="table-container color-2">
+					  <div class="row">
+					    <div class="tab-7 table-header-large-dark">Application Framework</div>
+					  </div>
+					</div>
+
+					<div class="table-container color-2">
+					  <div class="row">
+					    <div class="tab-1">
+					    	<div class="table-card"
+					    	data-tip="The Activity Manager controls the Lifecycles of App Activities including the management of the Activity stack.<br>
+					    	<a href='https://developer.android.com/reference/android/app/ActivityManager.html' target='_blank'>API REFERENCE</a>" data-tip-on="false">Activity<br>Manager</div>
+					  	</div>
+					    <div class="tab-1">
+					    	<div class="table-card"
+					    	data-tip="Content Providers allow for data sharing between Apps.<br>
+					    	<a href='https://developer.android.com/guide/topics/providers/content-providers.html' target='_blank'>GUIDE.</a><br>
+					    	<a href='https://developer.android.com/reference/android/content/ContentProvider.html' target='_blank'>API REFERENCE</a>" data-tip-on="false">Content<br>Providers</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card"
+					    	data-tip="The View System constructs the User Interfaces for Activities (and Fragments).<br>
+					    	<a href='https://developer.android.com/guide/topics/ui/overview.html' target='_blank'>GUIDE</a><br>
+					    	<a href='https://developer.android.com/reference/android/view/View.html' target='_blank'>API REFERENCE</a>" data-tip-on="false">View<br>System</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card"
+					    	data-tip="The Package Manager allows you to interact with other application packages (Apps) on the device - e.g., using getPackageManager() to check for available Apps to launch an implicit intent.<br>
+					    	<a href='https://developer.android.com/reference/android/content/pm/PackageManager.html' target='_blank'>API REFERENCE</a>" data-tip-on="false">Package<br>Manager</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card"
+					    	data-tip="The Resource Manager allows non-code resources, such as strings and graphics to be externalized." data-tip-on="false">Resource<br>Manager</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card"
+					    	data-tip="The Location Manager provides access to the system location services which allow applications to obtain periodic updates of the device's geographical location, or to fire an application-specified intent when the device enters the proximity of a given geographical location (A <a href='https://developer.android.com/training/location/index.html' target='_blank'>Google Location Services API</a> also exists as part of Google Play Services).<br>
+								<a href='https://developer.android.com/guide/topics/location/index.html' target='_blank'>GUIDE</a><br>
+								<a href='https://developer.android.com/reference/android/location/LocationManager.html' target='_blank'>API REFERENCE</a>" data-tip-on="false">Location<br>Manager</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card"
+					    	data-tip="The Notification Manager provides a consistent and non-intrusive way to signal your users - can take the form of Status Bar icons, messages in the Notification Drawer, flashing lights, sound or vibration etc.
+					    	<a href='https://developer.android.com/guide/topics/ui/notifiers/notifications.html' target='_blank'>GUIDE</a><br>
+								<a href='https://developer.android.com/reference/android/app/NotificationManager.html' target='_blank'>API REFERENCE</a>" data-tip-on="false">Notification<br>Manager</div>
+					    </div>
+						</div>
+					</div>
+
+					<div class="table-container color-3">
+					  <div class="row">
+					    <div class="tab-7 table-header-large">Core C/C++ Libraries</div>
+					  </div>
+					</div>
+
+					<div class="table-container color-3">
+					  <div class="row">
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="Android contains libraries for the support of visual graphics on Android devices." data-tip-on="false">Graphics<br><span class="table-small-text">SGL<br>OpenGL</span></div>
+					  	</div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="The WebKit library is responsible for browser support on Android devices; it is the same library which supports Google's Chrome and Apple's Safari Browsers." data-tip-on="false">WebKit</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="The libc library is the standard C library (in the case of Android, tuned for embedded Linux devices)." data-tip-on="false">libc<br><span class="table-small-text">The C Runtime<br>Library</span></div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="The Surface Manager Library supports access to the display system and supports 2D and 3D." data-tip-on="false">Surface<br>Manager</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="SQLite is an open-source relational database available on Android devices." data-tip-on="false">SQLite</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="The Secure Socket Layer (SSL) library provides for internet security on Android devices." data-tip-on="false">SSL Security</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="Android contains a Media library for playback of audio and visual media." data-tip-on="false">Media Library</div>
+					    </div>
+						</div>
+					</div>
+
+					<div class="table-container color-4">
+					  <div class="row">
+					    <div class="tab-7 table-header-large-dark">Android Runtime</div>
+					  </div>
+					</div>
+
+					<div class="table-container color-4">
+					  <div class="row">
+					    <div class="tab-1">
+					  	</div>
+					    <div class="tab-1">
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="ART is now the default runtime of Android devices as of Android 5.0 Lollipop, replacing the Dalvik Virtual Machine (DVM).  Unlike DVM, which uses Just-In-Time (JIT) compilation, ART features Ahead-Of-Time (AOT) compilation which compiles the app's Java files at install time. This results in faster performance and less battery usage." data-tip-on="false">Android Runtime (ART)</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="Dalvik was Android’s previous Java virtual machine. It allowed Android to run the byte-code generated from Java-based apps and Android’s own system components and provided both with the required hooks and environment to interface with the rest of the system, including native libraries and the rest of the native user-space." data-tip-on="false">Dalvik Virtual Machine</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="Android Core Runtime Libraries include Java Interoperability Libraries, open-source implementations of a subset of the standard Java core libraries; as well as libraries specific to Android Development, documentation for which can be found <a href='https://developer.android.com/reference/packages.html' target='_blank'>HERE</a>." data-tip-on="false">Android Runtime<br>Core Libraries</div>
+					    </div>
+					    <div class="tab-1">
+					    </div>
+					    <div class="tab-1">
+					    </div>
+						</div>
+					</div>
+
+					<div class="table-container color-5">
+					  <div class="row">
+					    <div class="tab-7 table-header-large">Linux Kernel</div>
+					  </div>
+					</div>
+
+					<div class="table-container color-5">
+					  <div class="row">
+					    <div class="tab-7 table-header-small">Hardware Abstraction Layer (HAL)</div>
+					  </div>
+					</div>
+
+					<div class="table-container color-5">
+					  <div class="row">
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">Audio</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">Bluetooth</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">Graphics</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">Media</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">DRM<br><span class="table-small-text">Digital Rights Management</span></div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">Camera</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">External<br>Storage</div>
+					    </div>
+						</div>
+					</div>
+
+					<div class="table-container color-5">
+						<div>
+						  <div class="row">
+						    <div class="tab-7 table-header-small">Device Drivers and Operating System Duties</div>
+						  </div>
+						</div>
+					</div>
+
+					<div class="table-container color-5">
+					  <div class="row">
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">Display<br>Driver</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">Camera<br>Driver</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">Wi-Fi <br>Driver</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">Flash Memory<br>Driver</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">Audio Driver<br><span class="table-small-text">e.g. ALSA, OSS</span></div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">Binder IPC<br>Driver</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">Keypad<br>Driver</div>
+					    </div>
+						</div>
+					</div>
+
+					<div class="table-container color-5">
+					  <div class="row">
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">Resource<br>Access</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false"><span class="table-small-text">Power and Process<br>Management</span></div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">Memory<br><span class="table-small-text">Management</span></div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">Security<br><span class="table-small-text">Management</span></div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">Network<br><span class="table-small-text">Management</span></div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">Bluetooth<br>Driver</div>
+					    </div>
+					    <div class="tab-1">
+					    	<div class="table-card" data-tip="" data-tip-on="false">USB<br>Driver</div>
+					    </div>
+						</div>
+					</div>
+
+					<div class="table-container color-6">
+					  <div class="row">
+					    <div class="tab-7 table-header-large-dark">Device Hardware</div>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+
+<script>
+	(function(d, w, undefined) {
+	    var elems = document.getElementsByClassName('table-card');
+
+        for(var i = 0; i < elems.length; i++) {
+            elems[i].addEventListener("click", doTip, false);
+            addEvent(elems[i], 'click', function(e){
+	            var elem = e.toElement;
+	          	if(elem.getAttribute('data-tip-on')  === 'false') {
+
+		            elem.setAttribute('data-tip-on', 'true');
+		            var rect = elem.getBoundingClientRect();
+		            var tipId = Math.random().toString(36).substring(7);
+		            elem.setAttribute('data-tip-id', tipId);
+		            var tip = document.createElement("div");
+		            tip.setAttribute('id', tipId);
+		            tip.innerHTML = elem.getAttribute('data-tip');
+		            tip.style.top = rect.bottom + 25 + 'px';
+		            tip.style.left = Math.abs((rect.left-(rect.width)/2)) + 'px';
+		            console.log(tip.style.left);
+		            tip.setAttribute('class','tip-box');
+		            document.body.appendChild(tip);
+
+	          } else {
+
+		            elem.setAttribute('data-tip-on', 'false');
+		            var tip = document.getElementById(elem.getAttribute('data-tip-id'));
+		            tip.parentNode.removeChild(tip);
+	          }
+
+            });
+        }
+
+	    function addEvent(element, myEvent, fnc) {
+	        return ((element.attachEvent)
+	                 ? element.attachEvent('on' + myEvent, fnc)
+	                 : element.addEventListener(myEvent, fnc, false));
+	    }
+
+    function doTip(e){
+
+
+    }
+
+	}(document, window))
+</script>
+
+<style>
+
+</style>
+
+</html>
